@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Research | Kanchan Soni</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+    <!-- Header (same as index.html) -->
+    <!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>Kanchan Soni</strong><br />
+					Astrophysicist <br />
+					<em>Syracuse University, NY</em></h1>
+					<br>
+					<br>
+					<!-- Sidebar Navigation -->
+					<nav>
+						<ul style="list-style: none; padding: 0; margin: 0; text-align: center;">
+							<li style="margin-bottom: 10px;">
+							<a href="#about" style="color: inherit; text-decoration: none;">About</a>
+							</li>
+							<li style="margin-bottom: 10px;">
+							<a href="#research" style="color: inherit; text-decoration: none;">Research</a>
+							</li>
+							<li style="margin-bottom: 10px;">
+							<a href="#publications" style="color: inherit; text-decoration: none;">Publications</a>
+							</li>
+							<li style="margin-bottom: 10px;">
+							<a href="#outreach" style="color: inherit; text-decoration: none;">Outreach</a>
+							<li style="margin-bottom: 10px;">
+							<a href="#resources" style="color: inherit; text-decoration: none;">Resources</a>
+							</li>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+    <!-- Main Research Section -->
+    <div id="main">
+        <section id="research">
+            <h1>Research</h1>
+            <h2> Gravitational wave search from compact binary coalescences</h2>
+            <p> <em> <strong> How efficiently can we detect gravitational waves observed compact binary coalescences? </strong> </em> </p>
+            <div style="display: flex; align-items: flex-start;">
+                <div style="flex: 1;">
+                  The gravitational wave signals from coalescing binaries leave their tiny imprints on the LIGO-Virgo interferometer's noise which is challenging to detect. These signals, if accurately modeled, can be picked out by matched filtering technique. In matched filtering, the detector's output is correlated with a modeled signal called a template waveform. The modeling of a template depends on several parameters corresponding to individual masses of the compact objects, their component spins, orbital eccentricities, and location with respect to the detector. Since the values of these parameters are a priori unknown, matched filtering-based search pipelines tend to correlate data with a "bank of templates."
+                </div>
+                <div style="flex: 1; text-align: right;">
+                    <img src="images/matched_filtering.png" alt="Matched Filtering" style="max-width: 350px; width: 100%; height: auto; float: right; margin-left: 30px;" />
+                </div>
+                
+            </div>
+            The template bank is generally constructed so that the maximum loss in matched-filtered signal-to-noise ratio (SNR) is not more than 3%, equivalent to less than 10% loss in detecting astrophysical signals. Since the correlation process involves Fast Fourier Transform (FFT), for a uniformly sampled time-series data having millions of points, the number of FFT computation scales as NlogN for N being the number of data points. This number increases when the correlation iterates over a million templates, thereby insanely increasing the computation cost.
+             <div style="display: flex; align-items: flex-start;">
+                <div style="flex: 1;">
+                  One way to reduce the computation cost of matched filtering is by performing it in multiple stages using multiple banks. Consider matched filtering of coarsely sampled data with a less dense bank called a coarse bank. The GW candidates identified in this step will have fewer SNRs, which can be improved if a finer search is performed in the signal's parameter space neighborhood. The finer search in the neighborhood will use few templates and, therefore, will effectively reduce the total matched filter cost.
+            </div>
+                <div style="flex: 1; text-align: right;">
+                    <img src="images/hierarchical.png" alt="Matched Filtering" style="max-width: 300px; width: 60%; height: auto; float: right; margin-left: 10px;" />
+                </div>
+                
+            </div>
+
+            <p><strong> Publications </strong> </p>
+            <ul>
+                <li>
+                    <strong>Kanchan Soni</strong>, Alexander H. Nitz, 
+                    <em>Hierarchical searches for subsolar-mass binaries</em>, 
+                    <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad96b4" target="_blank">ApJ 978 69 (2024)</a> 
+                    <a href="https://arxiv.org/abs/2409.11317" target="_blank">[arXiv:2409.11317]</a>
+                </li>
+                <li>
+                    <strong>Kanchan Soni</strong>, S. Mitra, S. Dhurandhar, 
+                    <em>Statistical significance of GW signals in hierarchical search</em>, 
+                    <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.024046" target="_blank">Phys. Rev. D 109 (2024)</a> 
+                    <a href="https://arxiv.org/abs/2309.00019" target="_blank">[arXiv:2309.00019]</a>
+                </li>
+            </ul>
+
+
+            <h2> Primordial black holes</h2>
+
+            <h2> How Do Compact Binaries Come Together?</h2>
+                <div style="width: 100%; text-align: center; margin: 20px 0;">
+                    <img src="images/formation_channels.png" alt="Formation Channels" style="width: 100%; height: auto; max-width: 800px;" />
+                </div>
+             
+
+            <h3> Can Gravity Bend a Wave? Hunting Lensed Gravitational Signals</h3>
+            <div style="width: 100%; text-align: center; margin: 20px 0;">
+                    <img src="images/lensing.png" alt="Formation Channels" style="width: 100%; height: auto; max-width: 800px;" />
+                </div>
+
+
+            <h3> Lights, Waves, Action! Exploring the Multimessenger Universe</h3>
+                <div style="width: 100%; text-align: center; margin: 20px 0;">
+                    <img src="images/ligoindia.png" alt="Formation Channels" style="width: 100%; height: auto; max-width: 800px;" />
+                </div>
+        </section>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

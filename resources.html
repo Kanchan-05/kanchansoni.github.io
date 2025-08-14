@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Research | Kanchan Soni</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+    <!-- Header (same as index.html) -->
+    <!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<h1><strong>Kanchan Soni</strong><br />
+					Astrophysicist <br />
+					<em>Syracuse University, NY</em></h1>
+					<br>
+					<br>
+					<!-- Sidebar Navigation -->
+					<nav>
+						<ul style="list-style: none; padding: 0; margin: 0; text-align: center;">
+							<li style="margin-bottom: 10px;">
+							<a href="index.html#about" style="color: inherit; text-decoration: none;">About</a>
+							</li>
+							<li style="margin-bottom: 10px;">
+							<a href="index.html#research" style="color: inherit; text-decoration: none;">Research</a>
+							</li>
+							<li style="margin-bottom: 10px;">
+							<a href="index.html#publications" style="color: inherit; text-decoration: none;">Publications</a>
+							</li>
+							<li style="margin-bottom: 10px;">
+							<a href="index.html#outreach" style="color: inherit; text-decoration: none;">Outreach</a>
+							<li style="margin-bottom: 10px;">
+							<a href="index.html#resources" style="color: inherit; text-decoration: none;">Resources</a>
+							</li>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+    <!-- Main Content -->
+    <div id="main">
+        <section id="main-section">
+            <h1>Resources</h1>
+
+            <h2 id="pycbc-pegasus">How to Run PyCBC on Any Cluster</h2>
+
+            <p>This tutorial guides you through installing <strong>PyCBC</strong>, <strong>Pegasus</strong>, and all necessary dependencies on a cluster, enabling you to confidently execute full gravitational wave search pipelines.</p>
+            <h3>Step 1: Install Conda</h3>
+            <p>Download the latest installer from:</p>
+            <p><a href="https://repo.anaconda.com/archive/" target="_blank">https://repo.anaconda.com/archive/</a></p>
+            <pre><code>$ bash Anaconda3-2023.09-0-Linux-x86_64.sh</code></pre>
+            <div class="tip"><strong>Tip:</strong> Source your bashrc after installing:
+            <pre><code>$ source ~/.bashrc</code></pre></div>
+            
+            <h3>Step 2: Install PyCBC</h3>
+            <pre><code>
+                $git clone https://github.com/gwastro/pycbc
+                $ cd pycbc/
+                $ pip install .
+                $ pip install -r requirements.txt
+                $ pip install -r companion.txt
+            </code></pre>
+
+            <h3>Step 3: Run a Test Example</h3>
+            <p>Navigate to the PyCBC example directory and run:</p>
+            <pre><code>$ bash gen.sh</code></pre>
+            <p>This example:</p>
+            <ul>
+            <li>Generates a bank using <code>bank.sh</code></li>
+            <li>Downloads frames using <code>get.sh</code></li>
+            <li>Generates stats with <code>stats.sh</code></li>
+            </ul>
+
+            <h3>Step 4: Install Java (for Pegasus)</h3>
+            <ol>
+            <li>Download Java 8 (JRE) from Oracle: <a href="https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html" target="_blank">Link</a></li>
+            <li>Copy it to the cluster:</li>
+            <pre><code>$ scp jre-8u391-linux-x64.tar username@ldas-grid.gw.iucaa.in:~/soft/</code></pre>
+            <li>Extract and configure:</li>
+            <pre><code>
+            $ cd ~/soft
+            $ tar -xf jre-8u391-linux-x64.tar
+            $ vi ~/.bashrc
+            export PATH="/home/username/soft/jre1.8.0_391/bin:$PATH"
+            $ source ~/.bashrc
+            $ java -version
+            </code></pre>
+            </ol>
+
+            <h3>Step 5: Install Pegasus</h3>
+            <ol>
+            <li>Check system architecture:</li>
+            <pre><code>$ arch</code></pre>
+            <li>Check OS version:</li>
+            <pre><code>$ condor_status -long | grep '^OpSys'</code></pre>
+            <li>Download the correct binary from:
+                <a href="https://pegasus.isi.edu/downloads/" target="_blank">Pegasus Downloads</a>
+            </li>
+            <li>Copy and extract:</li>
+            <pre><code>
+            $ scp pegasus-binary-5.0.6-x86_64_ubuntu_20.tar username@ldas-grid.gw.iucaa.in:~/soft/
+            $ cd ~/soft
+            $ tar -xf pegasus-binary-5.0.6-x86_64_ubuntu_20.tar
+            $ vi ~/.bashrc
+            export PATH="/home/username/soft/pegasus-5.0.6/bin:$PATH"
+            $ source ~/.bashrc
+            $ pegasus-version
+            </code></pre>
+            </ol>
+
+            <h3>Quick Checklist</h3>
+            <table>
+            <thead>
+                <tr>
+                <th>Component</th>
+                <th>Status Command</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Conda</td>
+                <td><code>$ conda --version</code></td>
+                </tr>
+                <tr>
+                <td>PyCBC</td>
+                <td><code>$ pycbc_version</code></td>
+                </tr>
+                <tr>
+                <td>Java</td>
+                <td><code>$ java -version</code></td>
+                </tr>
+                <tr>
+                <td>Pegasus</td>
+                <td><code>$ pegasus-version</code></td>
+                </tr>
+            </tbody>
+            </table>
+            <p>If all commands return version info, you're good to go!</p>
+            <p><em>Happy GW searching!</em></p>
+
+            <!-- condor submission - -->
+            <h2 id="condor-job"> How to Submit Your First HTCondor Job?</h2>
+            <p>Need to run your analysis across a cluster? HTCondor is your friend. Here's a quick and clean guide to get your job running in no time.</p>
+
+            <h3>Step 1: Create a Run Script</h3>
+            <p>This is the script that HTCondor will execute. Make sure it runs your full pipeline or Python script.</p>
+
+            <pre><code>
+            # run.sh
+            #!/bin/bash
+            set -e
+            source /path/to/your/env.sh  # Activate your conda env, load modules, etc.
+            python my_analysis.py --config config.yaml
+            </code></pre>
+
+            <p><strong>Tip:</strong> Make it executable with <code>chmod +x run.sh</code>.</p>
+
+            <h3>Step 2: Write a Submit File</h3>
+            <p>This file tells Condor how to run your job, how many resources to request, and where to save logs.</p>
+
+            <pre><code>
+                # job_submit.sub
+                universe       = vanilla
+                executable     = run.sh
+                log            = job.log
+                output         = job.out
+                error          = job.err
+                request_cpus   = 2
+                request_memory = 8GB
+                request_disk   = 4GB
+                queue
+            </code></pre>
+
+            <p><strong>Pro tip:</strong> Customize <code>cpus</code> and <code>memory</code> for your job size!</p>
+
+            <h3>Step 3: Submit Your Job</h3>
+            <p>Fire off your job with this one-liner:</p>
+
+            <pre><code>condor_submit job_submit.sub</code></pre>
+
+            <h3>Step 4: Monitor and Debug</h3>
+            <p>Watch your job queue or troubleshoot with these commands:</p>
+            <ul>
+                <li><code>condor_q</code> — See your jobs in the queue</li>
+                <li><code>condor_history</code> — View completed jobs</li>
+                <li><code>condor_q -better-analyze</code> — Diagnose why a job isn’t running</li>
+            </ul>
+
+            <h3>Learn More</h3>
+            <ul>
+                <li><a href="https://htcondor.readthedocs.io/" target="_blank">HTCondor Official Docs</a></li>
+                <li><a href="https://chtc.cs.wisc.edu/" target="_blank">Center for High Throughput Computing (CHTC)</a></li>
+            </ul>
+ 
+            <h2 id="cool-vim-hack">Cool Vim Hack</h2>
+            
+            <!-- Hack 1: Replace a word throughout a large file -->
+            <h3 style="margin-top: 20px;">1. Replace a word throughout a large file</h3>
+            <p><strong>Goal:</strong> Replace every instance of <code>GWOSG</code> with <code>GWOSG_FREE</code>.</p>
+            <pre style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid;">
+            <code style="font-family: monospace; font-size: 1em">:%s/GWOSG/GWOSG_FREE/g</code>
+            </pre>
+            <p><strong>Explanation:</strong> <code>%</code> means the entire file, <code>s</code> is for substitution, and <code>g</code> makes it apply globally on each line.</p>
+            <!-- Bonus: Remove all extra spaces -->
+            <h3 style="margin-top: 20px;">Bonus: Remove all extra spaces at end of lines</h3>
+            <pre style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid;">
+            <code style="font-family: monospace; font-size: 1em">:%s/\s\+$//g</code>
+            </pre>
+            <p><strong>Explanation:</strong> This removes all trailing whitespace from every line in the file.</p>
+ 
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
